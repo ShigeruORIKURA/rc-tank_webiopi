@@ -1,6 +1,7 @@
 import webiopi
 import time
 import Adafruit_PCA9685
+import subprocess
 
 PWM_FREQUENCY=60
 
@@ -101,3 +102,11 @@ def left_servo_back():
 def left_servo_stop():
     global l_servo_state
     l_servo_state = 0
+
+@webiopi.macro
+def camera_start():
+    subprocess.Popen(['/home/pi/camera.sh', 'start'])
+
+@webiopi.macro
+def camera_stop():
+    subprocess.Popen(['/home/pi/camera.sh', 'stop'])
