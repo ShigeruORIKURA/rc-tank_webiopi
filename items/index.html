@@ -15,7 +15,7 @@
             ct1.append(btn);
             btn = webiopi().createButton("b-rt", "b_rt", push_b_rt_button, release_rt_button);
             ct1.append(btn);
-            btn = webiopi().createButton("cam-srt", "cam_srt", push_photo_start);
+            btn = webiopi().createButton("cam-srt", "cam_srt", push_camera_start);
             ct1.append(btn);
             btn = webiopi().createButton("l-f", "l_f", push_l_f_button, release_l_button);
             ct0.append(btn);
@@ -25,7 +25,7 @@
             ct0.append(btn);
             btn = webiopi().createButton("b-lt", "b_lt", push_b_lt_button, release_lt_button);
             ct0.append(btn);
-            btn = webiopi().createButton("cam-stp", "cam_stp", push_photo_stop);
+            btn = webiopi().createButton("cam-stp", "cam_stp", push_camera_stop);
             ct0.append(btn);
         }
         function push_r_f_button() {
@@ -64,11 +64,11 @@
         function release_lt_button() {
             webiopi().callMacro("left_servo_stop");
         }
-        function push_photo_start() {
-            webiopi().callMacro("photo_start");
+        function push_camera_start() {
+            webiopi().callMacro("camera_start");
         }
-        function push_photo_stop() {
-            webiopi().callMacro("photo_stop");
+        function push_camera_stop() {
+            webiopi().callMacro("camera_stop");
         }
         webiopi().ready(init);
  
