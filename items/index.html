@@ -25,7 +25,7 @@
             ct0.append(btn);
             btn = webiopi().createButton("b-lt", "b_lt", push_b_lt_button, release_lt_button);
             ct0.append(btn);
-            btn = webiopi().createButton("cam-stp", "cam_stp", push_camera_stop);
+            btn = webiopi().createButton("pwr-off", "pwr_off", push_power_off);
             ct0.append(btn);
         }
         function push_r_f_button() {
@@ -70,6 +70,9 @@
         function push_camera_stop() {
             webiopi().callMacro("camera_stop");
         }
+        function push_power_off() {
+            webiopi().callMacro("power_off");
+        }
         webiopi().ready(init);
  
     </script>
@@ -91,7 +94,7 @@
     </div>
     <div style="float:left; width:60%;">
         <div id="streaming" align ="center">
-            <img src="http://192.168.10.13:8080/?action=stream" />
+            <img src="http://192.168.10.13:8080/?action=stream" onerror="this.src='default_image.png'"/>
         </div>
     </div>
     <div style="float:left; width:20%;">
