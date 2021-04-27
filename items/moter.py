@@ -110,3 +110,7 @@ def camera_start():
 @webiopi.macro
 def camera_stop():
     subprocess.Popen(['/home/pi/camera.sh', 'stop'])
+
+@webiopi.macro
+def power_off():
+    subprocess.Popen(['poweroff'])
