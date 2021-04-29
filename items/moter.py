@@ -20,8 +20,8 @@ MAX_PULSE_WIDTH=1250
 pwm = Adafruit_PCA9685.PCA9685()
 pwm.set_pwm_freq(PWM_FREQUENCY)
 
-r_servo_val=MIN_SERVO_PULSE_WIDH
-l_servo_val=MIN_SERVO_PULSE_WIDH
+r_servo_val=300
+l_servo_val=300
 r_servo_state=0
 l_servo_state=0
 
