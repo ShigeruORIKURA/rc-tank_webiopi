@@ -19,6 +19,21 @@
     <title>rc-raspi</title>
     <script type="text/javascript" src="/webiopi.js"></script>
     <script type="text/javascript">
+
+    function sleep(waitSec, callbackFunc) {
+            var spanedSec = 0;
+            var waitFunc = function () {
+                spanedSec++;
+                if (spanedSec >= waitSec) {
+                    if (callbackFunc) callbackFunc();
+                    return;
+                }
+                clearTimeout(id);
+                id = setTimeout(waitFunc, 1000);
+            };
+            var id = setTimeout(waitFunc, 1000);
+        }
+
         function init() {
             var btn, ct0, ct1;
             ct0 = $("#box_left");
@@ -86,6 +101,9 @@
             stremer_image_ID.style.display ="none";
             loading_image_ID.style.display ="block";
             webiopi().callMacro("camera_start");
+            sleep(3, function () {
+                document.location.reload();
+            });
         }
         function push_camera_stop() {
             let stremer_image_ID = document.getElementById("stremer_image");
