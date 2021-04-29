@@ -25,14 +25,6 @@ l_servo_val=MIN_SERVO_PULSE_WIDH
 r_servo_state=0
 l_servo_state=0
 
-def set_right_servo_state(state):
-    global r_servo_state
-    r_servo_state = state
-
-def set_left_servo_state(state):
-    global l_servo_state
-    l_servo_state = state
-
 def loop():
     global r_servo_state
     global l_servo_state
@@ -83,27 +75,33 @@ def left_moter_stop():
 
 @webiopi.macro
 def right_servo_forward():
-    set_right_servo_state(-10)
+    global r_servo_state
+    r_servo_state = -10
 
 @webiopi.macro
 def right_servo_back():
-    set_right_servo_state(10)
+    global r_servo_state
+    r_servo_state = 10
 
 @webiopi.macro
 def right_servo_stop():
-    set_right_servo_state(0)
+    global r_servo_state
+    r_servo_state = 0
 
 @webiopi.macro
 def left_servo_forward():
-    set_left_servo_state(-10)
+    global l_servo_state
+    l_servo_state = -10
 
 @webiopi.macro
 def left_servo_back():
-    set_left_servo_state(10)
+    global l_servo_state
+    l_servo_state = 10
 
 @webiopi.macro
 def left_servo_stop():
-    set_left_servo_state(0)
+    global l_servo_state
+    l_servo_state = 0
 
 @webiopi.macro
 def camera_start():
