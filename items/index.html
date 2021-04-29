@@ -1,4 +1,20 @@
 <html>
+    <body margin-top="100">
+        <div style="float:left; width:20%;">
+            <div id="box_left" align ="center"></div>
+        </div>
+        <div style="float:left; width:60%;">
+            <div id="streaming" align ="center">
+                <img id="stremer_image" src="http://192.168.10.13:8080/?action=stream"  onError="this.onerror=null;this.src='images/default_image.jpg';" width="80%" />
+                <img id="loading_image" src="images/loading_image.jpg" style="display:none" width="80%" />
+                <img id="shutdown_001_image" src="images/shutdown_image_001.jpg" style="display:none" width="80%" />
+                <img id="shutdown_002_image" src="images/shutdown_image_002.jpg" style="display:none" width="80%" />
+            </div>
+        </div>
+        <div style="float:left; width:20%;">
+            <div id="box_right" align ="center"></div>
+        </div>
+    </body>
 <head>
     <title>rc-raspi</title>
     <script type="text/javascript" src="/webiopi.js"></script>
@@ -65,13 +81,30 @@
             webiopi().callMacro("left_servo_stop");
         }
         function push_camera_start() {
+            let stremer_image_ID = document.getElementById("stremer_image");
+            let loading_image_ID = document.getElementById("loading_image");
+            stremer_image_ID.style.display ="none";
+            loading_image_ID.style.display ="block";
             webiopi().callMacro("camera_start");
         }
         function push_camera_stop() {
+            let stremer_image_ID = document.getElementById("stremer_image");
+            let loading_image_ID = document.getElementById("loading_image");
+            stremer_image_ID.style.display ="block";
+            loading_image_ID.style.display ="none";
             webiopi().callMacro("camera_stop");
         }
         function push_power_off() {
+            let stremer_image_ID = document.getElementById("stremer_image");
+            let shutdown_001_image_ID = document.getElementById("shutdown_001_image");
+            let shutdown_002_image_ID = document.getElementById("shutdown_002_image");
+            stremer_image_ID.style.display ="none";
+            shutdown_001_image_ID.style.display ="block";
             webiopi().callMacro("power_off");
+            sleep(10, function () {
+                shutdown_001_image_ID.style.display ="none";
+                shutdown_002_image_ID.style.display ="block";
+            });
         }
         webiopi().ready(init);
  
@@ -88,17 +121,4 @@
         }
     </style>
 </head>
-<body margin-top="100">
-    <div style="float:left; width:20%;">
-        <div id="box_left" align ="center"></div>
-    </div>
-    <div style="float:left; width:60%;">
-        <div id="streaming" align ="center">
-            <img src="http://192.168.10.13:8080/?action=stream" onerror="this.src='default_image.png'"/>
-        </div>
-    </div>
-    <div style="float:left; width:20%;">
-        <div id="box_right" align ="center"></div>
-    </div>
-</body>
 </html>
